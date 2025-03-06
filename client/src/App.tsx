@@ -1,12 +1,13 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { WarehouseProvider } from "@/contexts/WarehouseContext";
 import ProtectedRoute from "@/components/auth/ProtectedRoute";
-import StoreManagerDashboard from "@/pages/dashboards/StoreManagerDashboard";
-import { InventoryProvider } from "@/contexts/InventoryContext"; // Import InventoryProvider
+
 import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -28,12 +29,12 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <AuthProvider>
-      <InventoryProvider> {/* Wrap with InventoryProvider */}
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
+    <BrowserRouter>
+      <AuthProvider>
+        <WarehouseProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/login" element={<Login />} />
@@ -112,10 +113,10 @@ const App = () => (
               <Route path="/unauthorized" element={<Unauthorized />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
-          </BrowserRouter>
-        </TooltipProvider>
-      </InventoryProvider> {/* Close InventoryProvider */}
-    </AuthProvider>
+          </TooltipProvider>
+        </WarehouseProvider>
+      </AuthProvider>
+    </BrowserRouter>
   </QueryClientProvider>
 );
 

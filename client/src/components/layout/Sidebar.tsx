@@ -125,7 +125,7 @@ const Sidebar = ({ className }: SidebarProps) => {
           {!collapsed && (
             <Link to="/dashboard" className="flex items-center gap-2">
               <Home className="h-5 w-5 text-sidebar-primary" />
-              <span className="font-medium">Stock Pulse</span>
+              <span className="font-medium">StockPulse</span>
             </Link>
           )}
           {collapsed && (

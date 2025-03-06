@@ -24,7 +24,7 @@ const LoginForm = () => {
       
       toast({
         title: "Login successful",
-        description: "Welcome back to the Dark Store Management System",
+        description: "Welcome back to the StockPulse System",
       });
       
       // Navigation happens in the protected route

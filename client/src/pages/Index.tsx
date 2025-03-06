@@ -9,7 +9,7 @@ const Index = () => {
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-background to-secondary">
       <div className="max-w-4xl mx-auto text-center px-4">
         <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">
-          Stock Pulse
+          StockPulse
         </h1>
         <p className="text-xl text-muted-foreground mb-8 animate-slide-up">
           Streamline your dark store operations with our comprehensive management solution

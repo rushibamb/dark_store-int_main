@@ -74,7 +74,7 @@ const Login = () => {
         <CardHeader>
           <CardTitle className="text-2xl">Welcome</CardTitle>
           <CardDescription>
-            Access the stock pulse system
+            Access the StockPulse system
           </CardDescription>
         </CardHeader>
         
@@ -124,15 +124,20 @@ const Login = () => {
                     </SelectContent>
                   </Select>
                 </div>
-                   {/* Demo Account Instructions */}
-      <div className="text-xs text-muted-foreground bg-gray-100 p-2 rounded">
-        <p><strong>Demo Credentials:</strong></p>
-        <p>📧 Email: <code>admin@example.com</code></p>
-        <p>🔑 Password: <code>password</code></p>
-      </div>
                 {error && (
                   <div className="text-sm text-destructive">{error}</div>
                 )}
+                <div className="text-xs text-muted-foreground">
+                  <p>Demo accounts:</p>
+                  <ul className="list-disc pl-4 mt-1">
+                    <li>admin@example.com</li>
+                    <li>manager@example.com</li>
+                    <li>staff@example.com</li>
+                    <li>delivery@example.com</li>
+                    <li>retailer@example.com</li>
+                  </ul>
+                  <p className="mt-1">All accounts use "password" as password</p>
+                </div>
               </CardContent>
               <CardFooter>
                 <Button type="submit" className="w-full" disabled={isLoading}>
