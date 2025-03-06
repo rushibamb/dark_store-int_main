@@ -74,7 +74,7 @@ const Login = () => {
         <CardHeader>
           <CardTitle className="text-2xl">Welcome</CardTitle>
           <CardDescription>
-            Access the dark store management system
+            Access the stock pulse system
           </CardDescription>
         </CardHeader>
         
@@ -127,17 +127,6 @@ const Login = () => {
                 {error && (
                   <div className="text-sm text-destructive">{error}</div>
                 )}
-                <div className="text-xs text-muted-foreground">
-                  <p>Demo accounts:</p>
-                  <ul className="list-disc pl-4 mt-1">
-                    <li>admin@example.com</li>
-                    <li>manager@example.com</li>
-                    <li>staff@example.com</li>
-                    <li>delivery@example.com</li>
-                    <li>retailer@example.com</li>
-                  </ul>
-                  <p className="mt-1">All accounts use "password" as password</p>
-                </div>
               </CardContent>
               <CardFooter>
                 <Button type="submit" className="w-full" disabled={isLoading}>

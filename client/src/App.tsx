@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,7 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 import ProtectedRoute from "@/components/auth/ProtectedRoute";
-
+import StoreManagerDashboard from "@/pages/dashboards/StoreManagerDashboard";
+import { InventoryProvider } from "@/contexts/InventoryContext"; // Import InventoryProvider
 import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -29,90 +29,92 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/login" element={<Login />} />
-            
-            {/* Dashboard routes */}
-            <Route path="/dashboard" element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            } />
-            
-            {/* Inventory routes */}
-            <Route path="/inventory" element={
-              <ProtectedRoute allowedRoles={["admin", "store_manager", "warehouse_staff"]}>
-                <Inventory />
-              </ProtectedRoute>
-            } />
-            
-            {/* Orders routes */}
-            <Route path="/orders" element={
-              <ProtectedRoute allowedRoles={["admin", "store_manager", "warehouse_staff", "delivery_partner", "retailer"]}>
-                <Orders />
-              </ProtectedRoute>
-            } />
-            
-            {/* Warehouses routes */}
-            <Route path="/warehouses" element={
-              <ProtectedRoute allowedRoles={["admin", "store_manager"]}>
-                <Warehouses />
-              </ProtectedRoute>
-            } />
-            
-            {/* Staff routes */}
-            <Route path="/staff" element={
-              <ProtectedRoute allowedRoles={["admin", "store_manager"]}>
-                <Staff />
-              </ProtectedRoute>
-            } />
-            
-            {/* Deliveries routes */}
-            <Route path="/deliveries" element={
-              <ProtectedRoute allowedRoles={["admin", "store_manager", "delivery_partner"]}>
-                <Deliveries />
-              </ProtectedRoute>
-            } />
-            
-            {/* Products routes */}
-            <Route path="/products" element={
-              <ProtectedRoute allowedRoles={["admin", "store_manager", "retailer"]}>
-                <Products />
-              </ProtectedRoute>
-            } />
-            
-            {/* Tasks routes */}
-            <Route path="/tasks" element={
-              <ProtectedRoute allowedRoles={["warehouse_staff", "delivery_partner"]}>
-                <Tasks />
-              </ProtectedRoute>
-            } />
-            
-            {/* Reports routes */}
-            <Route path="/reports" element={
-              <ProtectedRoute allowedRoles={["admin", "store_manager"]}>
-                <Reports />
-              </ProtectedRoute>
-            } />
-            
-            {/* Settings routes */}
-            <Route path="/settings" element={
-              <ProtectedRoute>
-                <Settings />
-              </ProtectedRoute>
-            } />
-            
-            {/* Unauthorized and Not Found routes */}
-            <Route path="/unauthorized" element={<Unauthorized />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
+      <InventoryProvider> {/* Wrap with InventoryProvider */}
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/login" element={<Login />} />
+              
+              {/* Dashboard routes */}
+              <Route path="/dashboard" element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              } />
+              
+              {/* Inventory routes */}
+              <Route path="/inventory" element={
+                <ProtectedRoute allowedRoles={["admin", "store_manager", "warehouse_staff"]}>
+                  <Inventory />
+                </ProtectedRoute>
+              } />
+              
+              {/* Orders routes */}
+              <Route path="/orders" element={
+                <ProtectedRoute allowedRoles={["admin", "store_manager", "warehouse_staff", "delivery_partner", "retailer"]}>
+                  <Orders />
+                </ProtectedRoute>
+              } />
+              
+              {/* Warehouses routes */}
+              <Route path="/warehouses" element={
+                <ProtectedRoute allowedRoles={["admin", "store_manager"]}>
+                  <Warehouses />
+                </ProtectedRoute>
+              } />
+              
+              {/* Staff routes */}
+              <Route path="/staff" element={
+                <ProtectedRoute allowedRoles={["admin", "store_manager"]}>
+                  <Staff />
+                </ProtectedRoute>
+              } />
+              
+              {/* Deliveries routes */}
+              <Route path="/deliveries" element={
+                <ProtectedRoute allowedRoles={["admin", "store_manager", "delivery_partner"]}>
+                  <Deliveries />
+                </ProtectedRoute>
+              } />
+              
+              {/* Products routes */}
+              <Route path="/products" element={
+                <ProtectedRoute allowedRoles={["admin", "store_manager", "retailer"]}>
+                  <Products />
+                </ProtectedRoute>
+              } />
+              
+              {/* Tasks routes */}
+              <Route path="/tasks" element={
+                <ProtectedRoute allowedRoles={["warehouse_staff", "delivery_partner"]}>
+                  <Tasks />
+                </ProtectedRoute>
+              } />
+              
+              {/* Reports routes */}
+              <Route path="/reports" element={
+                <ProtectedRoute allowedRoles={["admin", "store_manager"]}>
+                  <Reports />
+                </ProtectedRoute>
+              } />
+              
+              {/* Settings routes */}
+              <Route path="/settings" element={
+                <ProtectedRoute>
+                  <Settings />
+                </ProtectedRoute>
+              } />
+              
+              {/* Unauthorized and Not Found routes */}
+              <Route path="/unauthorized" element={<Unauthorized />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </InventoryProvider> {/* Close InventoryProvider */}
     </AuthProvider>
   </QueryClientProvider>
 );

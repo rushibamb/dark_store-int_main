@@ -14,10 +14,10 @@ import {
 
 // Mock data
 const mockStores = [
-  { id: 1, name: "Downtown Store", manager: "John Smith", orders: 145, stock: 1250, alerts: 2 },
-  { id: 2, name: "Westside Location", manager: "Emma Johnson", orders: 98, stock: 875, alerts: 0 },
-  { id: 3, name: "North Mall Store", manager: "Michael Brown", orders: 210, stock: 1650, alerts: 5 },
-  { id: 4, name: "East End Dark Store", manager: "Sarah Williams", orders: 65, stock: 920, alerts: 1 },
+  { id: 1, name: "Downtown Store", manager: "praneet more", orders: 145, stock: 1250, alerts: 2 },
+  { id: 2, name: "Westside Location", manager: "Sham shete", orders: 98, stock: 875, alerts: 0 },
+  { id: 3, name: "North Mall Store", manager: "Ganesh Kale", orders: 210, stock: 1650, alerts: 5 },
+  { id: 4, name: "East End Dark Store", manager: "Rama deshmane", orders: 65, stock: 920, alerts: 1 },
 ];
 
 const mockLowStock = [
@@ -36,10 +36,10 @@ const mockPendingOrders = [
 ];
 
 const mockDeliveries = [
-  { id: "DEL-567", retailer: "Metro Supermarket", driver: "David Lee", store: "Downtown Store", status: "In Transit" },
-  { id: "DEL-568", retailer: "Fresh Mart", driver: "Amanda Clark", store: "Westside Location", status: "Delivered" },
-  { id: "DEL-569", retailer: "Corner Grocers", driver: "Robert Johnson", store: "East End Dark Store", status: "Preparing" },
-  { id: "DEL-570", retailer: "Organica Foods", driver: "Jennifer White", store: "North Mall Store", status: "Delivered" },
+  { id: "DEL-567", retailer: "Metro Supermarket", driver: "Sanket Mahadik", store: "Downtown Store", status: "In Transit" },
+  { id: "DEL-568", retailer: "Fresh Mart", driver: "Dhanush Kalyan", store: "Westside Location", status: "Delivered" },
+  { id: "DEL-569", retailer: "Corner Grocers", driver: "Anthony shaikh", store: "East End Dark Store", status: "Preparing" },
+  { id: "DEL-570", retailer: "Organica Foods", driver: "Shahrukh Khan", store: "North Mall Store", status: "Delivered" },
 ];
 
 const AdminDashboard = () => {
@@ -132,7 +132,7 @@ const AdminDashboard = () => {
               columns={[
                 { key: "id", title: "Order ID" },
                 { key: "retailer", title: "Retailer" },
-                { key: "value", title: "Value", render: (value) => `$${value.toFixed(2)}` },
+                { key: "value", title: "Value", render: (value) => `₹${value.toFixed(2)}` },
                 { key: "store", title: "Store" },
                 { 
                   key: "status", 

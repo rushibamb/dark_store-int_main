@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import Card from "@/components/common/Card";
 import { DataTable } from "@/components/common/DataTable";
@@ -29,7 +29,10 @@ const mockOrders = [
 const RetailerDashboard = () => {
   const [cart, setCart] = useState<any[]>([]);
   const { toast } = useToast();
-  
+  const [pendingOrders, setPendingOrders] = useState(mockOrders.filter(order => order.status === "Pending"));
+  const [processingOrders, setProcessingOrders] = useState(mockOrders.filter(order => order.status === "Processing"));
+  const [shippedOrders, setShippedOrders] = useState(mockOrders.filter(order => order.status === "Shipped"));
+
   const addToCart = (product: any) => {
     setCart(prev => {
       const existing = prev.find(item => item.id === product.id);
@@ -75,19 +78,19 @@ const RetailerDashboard = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
           <Stats 
             title="Pending Orders" 
-            value="2" 
+            value={pendingOrders.length.toString()} 
             description="Awaiting fulfillment" 
             icon={<Clock className="h-8 w-8 text-info" />} 
           />
           <Stats 
             title="Processing" 
-            value="1" 
+            value={processingOrders.length.toString()} 
             description="Being prepared" 
             icon={<Package className="h-8 w-8 text-warning" />} 
           />
           <Stats 
             title="Shipped" 
-            value="3" 
+            value={shippedOrders.length.toString()} 
             description="On the way" 
             icon={<Truck className="h-8 w-8 text-primary" />} 
           />
@@ -107,7 +110,7 @@ const RetailerDashboard = () => {
                 columns={[
                   { key: "name", title: "Product" },
                   { key: "category", title: "Category" },
-                  { key: "price", title: "Price", render: (value) => `$${value.toFixed(2)}` },
+                  { key: "price", title: "Price", render: (value) => `₹${value.toFixed(2)}` },
                   { key: "stock", title: "Stock" },
                   { 
                     key: "id", 
@@ -131,14 +134,14 @@ const RetailerDashboard = () => {
                     {cart.map(item => (
                       <li key={item.id} className="py-2 flex justify-between">
                         <span>{item.name} (x{item.quantity})</span>
-                        <span>${(item.price * item.quantity).toFixed(2)}</span>
+                        <span>₹{(item.price * item.quantity).toFixed(2)}</span>
                       </li>
                     ))}
                   </ul>
                   <div className="mt-4 flex justify-between font-bold">
                     <span>Total:</span>
                     <span>
-                      ${cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2)}
+                      ₹{cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2)}
                     </span>
                   </div>
                   <Button className="w-full mt-4" onClick={placeOrder}>
@@ -154,7 +157,7 @@ const RetailerDashboard = () => {
                 columns={[
                   { key: "id", title: "Order ID" },
                   { key: "date", title: "Date" },
-                  { key: "total", title: "Total", render: (value) => `$${value.toFixed(2)}` },
+                  { key: "total", title: "Total", render: (value) => `₹${value.toFixed(2)}` },
                   { 
                     key: "status", 
                     title: "Status", 
