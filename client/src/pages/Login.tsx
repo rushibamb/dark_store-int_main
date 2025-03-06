@@ -124,6 +124,12 @@ const Login = () => {
                     </SelectContent>
                   </Select>
                 </div>
+                   {/* Demo Account Instructions */}
+      <div className="text-xs text-muted-foreground bg-gray-100 p-2 rounded">
+        <p><strong>Demo Credentials:</strong></p>
+        <p>📧 Email: <code>admin@example.com</code></p>
+        <p>🔑 Password: <code>password</code></p>
+      </div>
                 {error && (
                   <div className="text-sm text-destructive">{error}</div>
                 )}
